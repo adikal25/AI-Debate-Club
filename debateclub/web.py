@@ -19,7 +19,6 @@ AVAILABLE_MODELS = [
     "openai/gpt-4o",
     "google/gemini-2.0-flash-001",
     "openai/gpt-4o-mini",
-    "anthropic/claude-haiku-4",
     "google/gemini-2.5-pro-preview-05-06",
     "meta-llama/llama-4-maverick",
     "deepseek/deepseek-chat-v3-0324",

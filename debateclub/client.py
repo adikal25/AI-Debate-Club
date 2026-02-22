@@ -77,6 +77,11 @@ def _extract_json(text: str) -> str:
             elif ch == "}":
                 depth -= 1
                 if depth == 0:
-                    return text[start : i + 1]
+                    result = text[start : i + 1]
+                    # Strip duplicate outer braces: {{ ... }} → { ... }
+                    stripped = result.strip()
+                    while stripped.startswith("{{") and stripped.endswith("}}"):
+                        stripped = stripped[1:-1].strip()
+                    return stripped
 
     return text.strip()
