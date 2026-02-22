@@ -18,12 +18,6 @@
 </div>
 {% endif %}
 
-<!-- Judge's Reasoning -->
-<div class="section">
-    <h3>Judge's Reasoning ({{ result.judgment.model_id }})</h3>
-    <p>{{ result.judgment.reasoning }}</p>
-</div>
-
 <!-- Scorecard -->
 <table class="scorecard">
     <thead>
@@ -54,6 +48,14 @@
     </tbody>
 </table>
 
+<!-- Judge's Reasoning -->
+<div class="section">
+    <details>
+        <summary>Judge's Reasoning ({{ result.judgment.model_id }})</summary>
+        <p>{{ result.judgment.reasoning }}</p>
+    </details>
+</div>
+
 <!-- Arguments -->
 <div class="arguments">
     <!-- FOR Column -->
@@ -61,26 +63,35 @@
         <h3>FOR ({{ result.for_argument.model_id }})</h3>
 
         <div class="section">
-            <h4>Opening Statement</h4>
-            <p>{{ result.for_argument.opening_statement }}</p>
+            <details>
+                <summary>Opening Statement</summary>
+                <p>{{ result.for_argument.opening_statement }}</p>
+            </details>
+            <p class="compact-text">{{ result.for_argument.opening_statement[:150] }}{% if result.for_argument.opening_statement|length > 150 %}&hellip;{% endif %}</p>
         </div>
 
         <div class="section">
             <h4>Claims</h4>
-            <ol class="claims">
+            <ol class="claims claims-compact">
                 {% for claim in result.for_argument.claims %}
                 <li class="claim">
                     <p class="claim-assertion">{{ claim.assertion }}</p>
-                    <p class="claim-evidence"><em>Evidence:</em> {{ claim.evidence }}</p>
-                    <p class="claim-reasoning"><em>Reasoning:</em> {{ claim.reasoning }}</p>
+                    <details>
+                        <summary>Evidence &amp; Reasoning</summary>
+                        <p class="claim-evidence"><em>Evidence:</em> {{ claim.evidence }}</p>
+                        <p class="claim-reasoning"><em>Reasoning:</em> {{ claim.reasoning }}</p>
+                    </details>
                 </li>
                 {% endfor %}
             </ol>
         </div>
 
         <div class="section">
-            <h4>Conclusion</h4>
-            <p>{{ result.for_argument.conclusion }}</p>
+            <details>
+                <summary>Conclusion</summary>
+                <p>{{ result.for_argument.conclusion }}</p>
+            </details>
+            <p class="compact-text">{{ result.for_argument.conclusion[:150] }}{% if result.for_argument.conclusion|length > 150 %}&hellip;{% endif %}</p>
         </div>
     </div>
 
@@ -89,31 +100,40 @@
         <h3>AGAINST ({{ result.against_argument.model_id }})</h3>
 
         <div class="section">
-            <h4>Opening Statement</h4>
-            <p>{{ result.against_argument.opening_statement }}</p>
+            <details>
+                <summary>Opening Statement</summary>
+                <p>{{ result.against_argument.opening_statement }}</p>
+            </details>
+            <p class="compact-text">{{ result.against_argument.opening_statement[:150] }}{% if result.against_argument.opening_statement|length > 150 %}&hellip;{% endif %}</p>
         </div>
 
         <div class="section">
             <h4>Claims</h4>
-            <ol class="claims">
+            <ol class="claims claims-compact">
                 {% for claim in result.against_argument.claims %}
                 <li class="claim">
                     <p class="claim-assertion">{{ claim.assertion }}</p>
-                    <p class="claim-evidence"><em>Evidence:</em> {{ claim.evidence }}</p>
-                    <p class="claim-reasoning"><em>Reasoning:</em> {{ claim.reasoning }}</p>
+                    <details>
+                        <summary>Evidence &amp; Reasoning</summary>
+                        <p class="claim-evidence"><em>Evidence:</em> {{ claim.evidence }}</p>
+                        <p class="claim-reasoning"><em>Reasoning:</em> {{ claim.reasoning }}</p>
+                    </details>
                 </li>
                 {% endfor %}
             </ol>
         </div>
 
         <div class="section">
-            <h4>Conclusion</h4>
-            <p>{{ result.against_argument.conclusion }}</p>
+            <details>
+                <summary>Conclusion</summary>
+                <p>{{ result.against_argument.conclusion }}</p>
+            </details>
+            <p class="compact-text">{{ result.against_argument.conclusion[:150] }}{% if result.against_argument.conclusion|length > 150 %}&hellip;{% endif %}</p>
         </div>
     </div>
 </div>
 
 <div class="back-link">
-    <a href="/">Submit Another Motion</a>
+    <a href="/" class="btn-link">Submit Another Motion</a>
 </div>
 {% endblock %}

@@ -127,11 +127,11 @@ button[type="submit"]:hover {
 /* Winner Banner */
 .winner-banner {
     width: 100%;
-    padding: 1.2rem;
+    padding: 0.7rem;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .winner-for {
@@ -153,7 +153,7 @@ button[type="submit"]:hover {
 .scorecard {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     background-color: var(--parchment);
 }
 
@@ -177,18 +177,18 @@ button[type="submit"]:hover {
 .arguments {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1.5rem;
+    margin-top: 1rem;
 }
 
 .argument-column h3 {
     font-size: 1.3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     color: var(--dark-wood);
 }
 
 .section {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .section h3 {
@@ -203,6 +203,10 @@ button[type="submit"]:hover {
 /* Claims */
 .claims {
     padding-left: 1.5rem;
+}
+
+.claims-compact .claim {
+    margin-bottom: 0.6rem;
 }
 
 .claim {
@@ -223,7 +227,7 @@ button[type="submit"]:hover {
 /* Back Link */
 .back-link {
     text-align: center;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
 }
 
 .back-link a {
@@ -250,4 +254,94 @@ footer {
     .arguments {
         grid-template-columns: 1fr;
     }
+}
+
+/* === Compact Results Styles === */
+
+/* Truncated preview text */
+.compact-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.9rem;
+    color: var(--dark-wood);
+    opacity: 0.8;
+    margin-top: 0.3rem;
+    line-height: 1.4;
+}
+
+/* Details/Summary expand-collapse */
+details {
+    margin-bottom: 0.3rem;
+}
+
+details summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--gold);
+    font-size: 0.95rem;
+    padding: 0.3rem 0;
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary::before {
+    content: "\25B6\00a0";
+    font-size: 0.7rem;
+    display: inline-block;
+    transition: transform 0.15s ease;
+    vertical-align: middle;
+}
+
+details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+details[open] + .compact-text {
+    display: none;
+}
+
+details summary:hover {
+    color: var(--dark-wood);
+}
+
+details > p {
+    padding: 0.4rem 0 0.2rem 1rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+/* Nested details inside claims */
+.claim details summary {
+    font-size: 0.85rem;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.claim details > p {
+    padding: 0.2rem 0 0.1rem 1rem;
+}
+
+/* Button-style link for "Submit Another Motion" */
+.btn-link {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    font-family: Palatino, Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: bold;
+    background-color: var(--dark-wood);
+    color: var(--gold);
+    border: 2px solid var(--dark-wood);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-link:hover {
+    background-color: #4a2e18;
+    color: var(--gold);
 }
