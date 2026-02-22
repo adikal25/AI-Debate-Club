@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}Results — The Debate Club{% endblock %}
+{% block content %}
+<h2>{{ result.topic }}</h2>
+
+<!-- Winner Banner -->
+{% if result.judgment.winner == "for" %}
+<div class="winner-banner winner-for">
+    Winner: FOR ({{ result.for_argument.model_id }})
+</div>
+{% elif result.judgment.winner == "against" %}
+<div class="winner-banner winner-against">
+    Winner: AGAINST ({{ result.against_argument.model_id }})
+</div>
+{% else %}
+<div class="winner-banner winner-tie">
+    Result: TIE
+</div>
+{% endif %}
+
+<!-- Judge's Reasoning -->
+<div class="section">
+    <h3>Judge's Reasoning ({{ result.judgment.model_id }})</h3>
+    <p>{{ result.judgment.reasoning }}</p>
+</div>
+
+<!-- Scorecard -->
+<table class="scorecard">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>FOR</th>
+            <th>AGAINST</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set ns = namespace(for_total=0, against_total=0) %}
+        {% for category in ["logic", "evidence", "rhetoric"] %}
+        {% set for_score = result.judgment.for_scores | selectattr("category", "equalto", category) | first %}
+        {% set against_score = result.judgment.against_scores | selectattr("category", "equalto", category) | first %}
+        <tr>
+            <td>{{ category | title }}</td>
+            <td title="{{ for_score.justification }}">{{ for_score.score }}</td>
+            <td title="{{ against_score.justification }}">{{ against_score.score }}</td>
+        </tr>
+        {% set ns.for_total = ns.for_total + for_score.score %}
+        {% set ns.against_total = ns.against_total + against_score.score %}
+        {% endfor %}
+        <tr class="total-row">
+            <td><strong>Total</strong></td>
+            <td><strong>{{ ns.for_total }}</strong></td>
+            <td><strong>{{ ns.against_total }}</strong></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Arguments -->
+<div class="arguments">
+    <!-- FOR Column -->
+    <div class="argument-column for-column">
+        <h3>FOR ({{ result.for_argument.model_id }})</h3>
+
+        <div class="section">
+            <h4>Opening Statement</h4>
+            <p>{{ result.for_argument.opening_statement }}</p>
+        </div>
+
+        <div class="section">
+            <h4>Claims</h4>
+            <ol class="claims">
+                {% for claim in result.for_argument.claims %}
+                <li class="claim">
+                    <p class="claim-assertion">{{ claim.assertion }}</p>
+                    <p class="claim-evidence"><em>Evidence:</em> {{ claim.evidence }}</p>
+                    <p class="claim-reasoning"><em>Reasoning:</em> {{ claim.reasoning }}</p>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <div class="section">
+            <h4>Conclusion</h4>
+            <p>{{ result.for_argument.conclusion }}</p>
+        </div>
+    </div>
+
+    <!-- AGAINST Column -->
+    <div class="argument-column against-column">
+        <h3>AGAINST ({{ result.against_argument.model_id }})</h3>
+
+        <div class="section">
+            <h4>Opening Statement</h4>
+            <p>{{ result.against_argument.opening_statement }}</p>
+        </div>
+
+        <div class="section">
+            <h4>Claims</h4>
+            <ol class="claims">
+                {% for claim in result.against_argument.claims %}
+                <li class="claim">
+                    <p class="claim-assertion">{{ claim.assertion }}</p>
+                    <p class="claim-evidence"><em>Evidence:</em> {{ claim.evidence }}</p>
+                    <p class="claim-reasoning"><em>Reasoning:</em> {{ claim.reasoning }}</p>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <div class="section">
+            <h4>Conclusion</h4>
+            <p>{{ result.against_argument.conclusion }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="back-link">
+    <a href="/">Submit Another Motion</a>
+</div>
+{% endblock %}

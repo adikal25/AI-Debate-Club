@@ -1,0 +1,253 @@
+/* The Debate Club — Legacy Aesthetic */
+
+:root {
+    --parchment: #f5f0e8;
+    --dark-wood: #2c1a0e;
+    --gold: #c9a84c;
+    --wax-red: #8b1a1a;
+    --baize-green: #1a4a2a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Palatino, Georgia, serif;
+    background-color: var(--parchment);
+    color: var(--dark-wood);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background-color: var(--dark-wood);
+    color: var(--gold);
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+header h1 {
+    font-size: 2.4rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+}
+
+header .subtitle {
+    font-style: italic;
+    font-size: 1rem;
+    opacity: 0.85;
+}
+
+/* Main Content */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    flex: 1;
+    width: 100%;
+}
+
+main h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-wood);
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    font-family: Palatino, Georgia, serif;
+    font-size: 1rem;
+    background-color: var(--parchment);
+    color: var(--dark-wood);
+    border: 2px solid var(--dark-wood);
+    border-radius: 0;
+    appearance: auto;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 1px;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    font-family: Palatino, Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--dark-wood);
+    color: var(--gold);
+    border: 2px solid var(--dark-wood);
+    border-radius: 0;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+button[type="submit"]:hover {
+    background-color: #4a2e18;
+}
+
+.note {
+    text-align: center;
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* Error Message */
+.error-message {
+    background-color: #f0d0d0;
+    border: 2px solid var(--wax-red);
+    color: var(--wax-red);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Winner Banner */
+.winner-banner {
+    width: 100%;
+    padding: 1.2rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.winner-for {
+    background-color: var(--baize-green);
+    color: var(--parchment);
+}
+
+.winner-against {
+    background-color: var(--wax-red);
+    color: var(--parchment);
+}
+
+.winner-tie {
+    background-color: var(--gold);
+    color: var(--dark-wood);
+}
+
+/* Scorecard Table */
+.scorecard {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    background-color: var(--parchment);
+}
+
+.scorecard th,
+.scorecard td {
+    border: 1px solid var(--dark-wood);
+    padding: 0.6rem 1rem;
+    text-align: center;
+}
+
+.scorecard thead tr {
+    background-color: var(--dark-wood);
+    color: var(--gold);
+}
+
+.scorecard .total-row {
+    border-top: 3px solid var(--dark-wood);
+}
+
+/* Arguments Grid */
+.arguments {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.argument-column h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--dark-wood);
+}
+
+.section {
+    margin-bottom: 1.5rem;
+}
+
+.section h3 {
+    color: var(--dark-wood);
+}
+
+.section h4 {
+    color: var(--dark-wood);
+    margin-bottom: 0.5rem;
+}
+
+/* Claims */
+.claims {
+    padding-left: 1.5rem;
+}
+
+.claim {
+    margin-bottom: 1rem;
+}
+
+.claim-assertion {
+    font-weight: bold;
+}
+
+.claim-evidence,
+.claim-reasoning {
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    margin-top: 0.2rem;
+}
+
+/* Back Link */
+.back-link {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.back-link a {
+    color: var(--dark-wood);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.back-link a:hover {
+    color: var(--gold);
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-wood);
+    color: var(--gold);
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .arguments {
+        grid-template-columns: 1fr;
+    }
+}

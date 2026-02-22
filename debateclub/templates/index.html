@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Submit a Motion — The Debate Club{% endblock %}
+{% block content %}
+<h2>Submit a Motion</h2>
+
+{% if error %}
+<div class="error-message">{{ error }}</div>
+{% endif %}
+
+<form action="/debate" method="post">
+    <div class="form-group">
+        <label for="topic">Motion to be debated:</label>
+        <input type="text" id="topic" name="topic" placeholder="e.g. Pineapple belongs on pizza" required value="{{ topic or '' }}">
+    </div>
+
+    <div class="form-group">
+        <label for="for_model">Arguing FOR:</label>
+        <select id="for_model" name="for_model">
+            {% for model in models %}
+            <option value="{{ model }}" {% if model == default_for %}selected{% endif %}>{{ model }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="against_model">Arguing AGAINST:</label>
+        <select id="against_model" name="against_model">
+            {% for model in models %}
+            <option value="{{ model }}" {% if model == default_against %}selected{% endif %}>{{ model }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="judge_model">Presiding Judge:</label>
+        <select id="judge_model" name="judge_model">
+            {% for model in models %}
+            <option value="{{ model }}" {% if model == default_judge %}selected{% endif %}>{{ model }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit">Call the Debate to Order</button>
+    <p class="note">Please allow 15–30 seconds for the debate to conclude.</p>
+</form>
+{% endblock %}
